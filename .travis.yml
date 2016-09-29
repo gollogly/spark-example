@@ -1,0 +1,19 @@
+sudo: required
+language: scala
+
+scala:
+   - 2.10.4
+python:
+   - 3.5
+   
+env:
+  - EVALUATOR_DIR=scala/Evaluator
+script:
+  - cd $EVALUATOR_DIR && sbt assembly coverage
+
+install:
+- sudo pip install --upgrade pip
+- sudo pip install coveralls
+
+after_success:
+  - coveralls
